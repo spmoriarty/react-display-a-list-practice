@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import DogList from './DogList';
+import Dog from './Dog';
+import DogsList from './fetch-utils';
 
 
 import './App.css';
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className="App">
       
-      <DogList />
+      <Dog />
 
     </div>
   );

@@ -1,11 +1,16 @@
 
 import React from 'react';
+import Dog from './dogs.';
 
-export default function DogList({ ...DogList }) {
+
+export default function DogsList({ dogs = [] }) {
   return (
-    <div>DogList
-
+    <div>
+      {
+        dogs.map((dog, i) => <Dog {...dog} key={dog.name + i + dog.id}/>)
+      };
         
     </div>
   );
+
 }
