@@ -1,11 +1,21 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import DogList from './DogList';
+
+
 import './App.css';
 // import your arrays here
 
+
+
 function App() {
+  
+  const [dogList, setDogList] = useState([]);
+  
   return (
     <div className="App">
-        Render all your lists here. Pass the arrays as props.
+      
+      <DogList />
+
     </div>
   );
 }
