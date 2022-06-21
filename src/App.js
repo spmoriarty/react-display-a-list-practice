@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Dog from './Dog';
-import DogsList from './fetch-utils';
+import dogsList from './fetch-utils';
 
 
 import './App.css';
@@ -11,11 +11,20 @@ import './App.css';
 function App() {
   
   const [dogList, setDogList] = useState([]);
+  const [isGettingDog, setIsGettingDog] = useState(false);
+
+  async function fetchDogsList(){
+    setIsGettingDog(true);
+    const data = await dogsList();
+    setIsGettingDog(false);
+    isGettingDog(data);
+
+  }
   
   return (
     <div className="App">
       
-      <Dog />
+      <Dog dogList={dogList} />
 
     </div>
   );
