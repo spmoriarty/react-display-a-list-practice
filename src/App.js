@@ -4,6 +4,7 @@ import dogsList from './fetch-utils';
 
 
 import './App.css';
+import { useEffect } from 'react';
 // import your arrays here
 
 
@@ -17,9 +18,12 @@ function App() {
     setIsGettingDog(true);
     const data = await dogsList();
     setIsGettingDog(false);
-    isGettingDog(data);
 
   }
+
+  useEffect(() => {
+    fetchDogsList();
+  },);
   
   return (
     <div className="App">
