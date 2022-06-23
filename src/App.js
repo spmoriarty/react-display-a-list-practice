@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import DogList from './DogList';
-import dogsList from './fetch-utils';
+import dogsList, { fetchPost } from './fetch-utils';
 import { workShopFetch } from './fetch-utils';
 import WorkShopList from './workShopList';
 import { fetchFalls } from './fetch-utils';
 import FallsList from './FallsList';
+import PostsList from './PostsList';
 
 
 import './App.css';
@@ -21,6 +22,8 @@ function App() {
   const [workShop, isGetWorkShop] = useState(false);
   const [fallList, setFallList] = useState([]);
   const [getFalls, setGetFalls] = useState(false);
+  const [getPost, setGetPost] = useState([]);
+  const [findPost, setFindPost] = useState(false);
 
   async function fetchDogsList(){
     setIsGettingDog(true);
@@ -59,7 +62,15 @@ function App() {
   },
   []);
 
-
+  useEffect(() => {
+    async function grabPost(){
+      setFindPost(true);
+      const data = await fetchPost();
+      setFindPost(false);
+      setGetPost(data);
+    }
+    grabPost();},
+  []);
   
   return (
     <><div className="App">
@@ -73,7 +84,8 @@ function App() {
           <FallsList waterFalls={fallList} />}<hr />
       </div>
       <div className='post'>
-        <h1>Challenges</h1>
+        {findPost ? <h1>Challenges</h1> : 
+          <PostsList posts={getPost} />}
       </div>
       
     </div></>
