@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Dog from './Dog';
+import DogList from './DogList';
 import dogsList from './fetch-utils';
 
 
@@ -11,25 +11,29 @@ import { useEffect } from 'react';
 
 function App() {
   
-  const [dogList, setDogList] = useState([]);
+  const [doggoList, setDogList] = useState([]);
   const [isGettingDog, setIsGettingDog] = useState(false);
+  
 
   async function fetchDogsList(){
     setIsGettingDog(true);
     const data = await dogsList();
     setIsGettingDog(false);
+    setDogList(data);
 
   }
 
   useEffect(() => {
     fetchDogsList();
-  },);
+  },
+  []);
   
   return (
     <div className="App">
-      
-      <Dog dogList={dogList} />
-
+      {
+        isGettingDog ? <h1>Doggos Incoming!</h1> :
+          <DogList dogs={doggoList}/>
+      }
     </div>
   );
 }
