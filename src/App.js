@@ -68,10 +68,12 @@ function App() {
       
       {workShop ? <h1>Grabbing Classes</h1> : 
         <WorkShopList workShops={shopList} />}<hr />
-      <div>
-        
+      <div className='falls'>
         {getFalls ? <h1>WaterFalls</h1> : 
           <FallsList waterFalls={fallList} />}<hr />
+      </div>
+      <div className='post'>
+        <h1>Challenges</h1>
       </div>
       
     </div></>

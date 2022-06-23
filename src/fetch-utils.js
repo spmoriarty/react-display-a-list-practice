@@ -18,3 +18,8 @@ export async function fetchFalls(){
   const response = await client.from('waterfalls').select('*');
   return response.data;
 }
+
+export async function fetchPost(){
+  const response = await client.from('post').select('*');
+  return response.data;
+}
