@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DogList from './DogList';
 import dogsList from './fetch-utils';
-import workShopFetch from './fetch-utils';
-import WorkShop from './WorkShop';
+import { workShopFetch } from './fetch-utils';
+
+import WorkShopList from './workShopList';
 
 
 import './App.css';
-import { useEffect } from 'react';
+
 // import your arrays here
 
 
@@ -32,14 +33,14 @@ function App() {
   []);
 
 
-  async function fetchWorkShops(){
-    isGetWorkShop(true);
-    const data = await workShopFetch();
-    isGetWorkShop(false);
-    setWorkShopList(data);
-  }
-
+  
   useEffect(() => {
+    async function fetchWorkShops(){
+      isGetWorkShop(true);
+      const data = await workShopFetch();
+      isGetWorkShop(false);
+      setWorkShopList(data);
+    }
     fetchWorkShops();
   },
   []);
@@ -53,7 +54,7 @@ function App() {
         <DogList dogs={doggoList} />}<hr />
       
       {workShop ? <h1>Grabbing Classes</h1> : 
-        <WorkShop workShop={shopList} />}
+        <WorkShopList workShops={shopList} />}
     </div></>
 
   );
