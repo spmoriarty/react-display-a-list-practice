@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import DogList from './DogList';
 import dogsList from './fetch-utils';
 import { workShopFetch } from './fetch-utils';
-
 import WorkShopList from './workShopList';
+import { fetchFalls } from './fetch-utils';
+import FallsList from './FallsList';
 
 
 import './App.css';
@@ -18,6 +19,8 @@ function App() {
   const [isGettingDog, setIsGettingDog] = useState(false);
   const [shopList, setWorkShopList] = useState([]);
   const [workShop, isGetWorkShop] = useState(false);
+  const [fallList, setFallList] = useState([]);
+  const [getFalls, setGetFalls] = useState(false);
 
   async function fetchDogsList(){
     setIsGettingDog(true);
@@ -45,6 +48,16 @@ function App() {
   },
   []);
 
+  useEffect(() => {
+    async function grabFalls(){
+      setGetFalls(true);
+      const data = await fetchFalls();
+      setGetFalls(false);
+      setFallList(data);
+    }
+    grabFalls();
+  },
+  []);
 
 
   
@@ -54,7 +67,13 @@ function App() {
         <DogList dogs={doggoList} />}<hr />
       
       {workShop ? <h1>Grabbing Classes</h1> : 
-        <WorkShopList workShops={shopList} />}
+        <WorkShopList workShops={shopList} />}<hr />
+      <div>
+        
+        {getFalls ? <h1>WaterFalls</h1> : 
+          <FallsList waterFalls={fallList} />}<hr />
+      </div>
+      
     </div></>
 
   );

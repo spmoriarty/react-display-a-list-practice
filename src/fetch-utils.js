@@ -13,3 +13,8 @@ export async function workShopFetch(){
   const response = await client.from('workshops').select('*');
   return response.data;
 }
+
+export async function fetchFalls(){
+  const response = await client.from('waterfalls').select('*');
+  return response.data;
+}

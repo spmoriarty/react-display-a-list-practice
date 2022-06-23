@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function orkShop({ name, instructor, days }) {
+export default function workShop({ name, instructor, days }) {
   return (
     <div className='workShop'>
       <h2>{instructor}</h2>
