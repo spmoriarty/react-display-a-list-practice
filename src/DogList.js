@@ -11,7 +11,7 @@ export default function DogsList({ dogs }) {
           <Dog {...dog} />
         </div>)
   
-      };
+      }
         
     </div>
   );

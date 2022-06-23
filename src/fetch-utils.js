@@ -9,3 +9,7 @@ export default async function dogsList() {
   
 }
 
+export async function workShopFetch(){
+  const response = await client.from('workshops').select('*');
+  return response.data;
+}
